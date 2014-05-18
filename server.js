@@ -16,9 +16,14 @@ var app = express();
 require('./lib/config/express')(app);
 require('./lib/routes')(app);
 
+// // Start server
+// app.listen(config.port, config.ip, function () {
+//   console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));
+// });
+
 // Start server
-app.listen(config.port, config.ip, function () {
-  console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));
+app.listen(config.port, function () {
+  console.log('Express server listening on port %s, in %s mode', config.port, app.get('env'));
 });
 
 // Expose app
