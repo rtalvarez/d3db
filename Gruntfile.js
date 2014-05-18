@@ -372,30 +372,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Run some tasks in parallel to speed up the build process
-    concurrent: {
-      server: [
-        'compass:server'
-      ],
-      test: [
-        'compass'
-      ],
-      debug: {
-        tasks: [
-          'nodemon',
-          'node-inspector'
-        ],
-        options: {
-          logConcurrentOutput: true
-        }
-      },
-      dist: [
-        'compass:dist',
-        'imagemin',
-        'svgmin',
-        'htmlmin'
-      ]
-    },
 
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
@@ -519,7 +495,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'bower-install',
     'useminPrepare',
-    'concurrent:dist',
+    // 'concurrent:dist',
     'autoprefixer',
     'concat',
     'ngmin',
@@ -531,14 +507,14 @@ module.exports = function (grunt) {
     'usemin'
   ]);
 
-  grunt.registerTask('heroku', function () {
-    grunt.log.warn('The `heroku` task has been deprecated. Use `grunt build` to build for deployment.');
-    grunt.task.run(['build']);
-  });
+  // grunt.registerTask('heroku', function () {
+  //   grunt.log.warn('The `heroku` task has been deprecated. Use `grunt build` to build for deployment.');
+  //   grunt.task.run(['build']);
+  // });
 
-  grunt.registerTask('default', [
-    'newer:jshint',
-    'test',
-    'build'
-  ]);
+  // grunt.registerTask('default', [
+  //   'newer:jshint',
+  //   'test',
+  //   'build'
+  // ]);
 };
