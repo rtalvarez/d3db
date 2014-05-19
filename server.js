@@ -23,9 +23,9 @@ require('./lib/routes')(app);
 
 // Start server
 app.listen(config.port, function () {
-  console.log('Port is: ', config.port);
-  console.log('IP is: ', config.ip);
-  console.log('Env is: ', process.env);
+  // console.log('Port is: ', config.port);
+  // console.log('IP is: ', config.ip);
+  // console.log('Env is: ', process.env);
   console.log('Express server listening on port %s, in %s mode', config.port, app.get('env'));
 });
 
