@@ -14,9 +14,15 @@
 
     <!-- Add your site or application content here -->
     <div class="container" ng-controller="MainCtrl">
-      <div ng-repeat="item in data">
-      {{ item }}
-      </div>  
+
+    <ul ng-repeat="item in data | orderByPriority">
+      <li>
+        <div ng-model="item.$priority">
+          {{ item }}
+        </div>
+      </li>
+    </ul>
+
     </div>
     <!-- build:js(app) scripts/vendor.js -->
     <!-- bower:js -->
