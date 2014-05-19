@@ -11,14 +11,18 @@ angular.module('d3dbApp', ['firebase'])
 
   ref.on('child_added', function(snapshot){
     var read = snapshot.val().split('@');
-    times.push(read[0]);
+    times.push(read[0].replace('~','.'));
     values.push(read[1]);
     console.log(snapshot.val());
   });
 
   ref = $firebase(ref);
 
-  $scope.data = ref;
+  window.times = times;
+  window.values = values;
+
+  $scope.data = times;
+  // console.log(ref);
   ref.$bind($scope, 'text');
 
 }]);
