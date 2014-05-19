@@ -14,16 +14,10 @@
 
     <!-- Add your site or application content here -->
     <div class="container" ng-controller="MainCtrl">
-      
-
-
-
-
-
+      <div ng-repeat="item in data">
+      {{ item }}
+      </div>  
     </div>
-
-
-
     <!-- build:js(app) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>

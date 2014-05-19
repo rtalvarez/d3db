@@ -8,7 +8,7 @@
 //   });
 
 
-angular.module('d3dbApp')
-  .controller('MainCtrl', function ($scope) {
+// angular.module('d3dbApp')
+//   .controller('MainCtrl', function ($scope) {
     
-  });
+//   });
