@@ -5,13 +5,16 @@
 
   window.helper = window.helper || {};
 
-  helper.parseData = function(datum, xi, yi) {
+  var i = 0;
 
-    datum.push({
-      x: xi,
+  helper.parseData = function(myData, xi, yi) {
+
+    i++;
+    myData[0].values.push({
+      x: i,
       y: yi
     });
-
+[]
   };
 
   helper.hello = function(){

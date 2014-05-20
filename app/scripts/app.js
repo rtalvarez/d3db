@@ -8,11 +8,15 @@ angular.module('d3dbApp', ['firebase'])
 
   var times = [1,2,3];
   var values = [1,2,3];
+  // var i = 0;
 
   ref.on('child_added', function(snapshot){
     var read = snapshot.val().split('@');
     times.push(read[0].replace('~','.'));
     values.push(read[1]);
+    console.log(read[1]);
+    helper.parseData(myData, +read[1]);
+    chart.update();
     // console.log(snapshot.val());
   });
 
@@ -51,23 +55,27 @@ angular.module('d3dbApp', ['firebase'])
 
     var myData = [{
       key: 'Test wave',
-      color: '#ff7f0e'
+      color: '#ff7f0e',
+      values: []
     }];
 
-    var arr = [];
-    myData[0].values = arr;
+    // var arr = [];
+    // myData[0].values = arr;
 
-    for (var i = 0; i < 10; i++){
-      arr.push({
-        x: i,
-        y: i
-      });
-    }
+    // for (var i = 0; i < 100; i++){
+    //   arr.push({
+    //     x: i,
+    //     y: i
+    //   });
+    // }
 
-    console.log(myData)
+    console.log(myData);
+    window.myData = myData;
+    window.chart = chart;
 
     d3.select('#chart svg')    //Select the <svg> element you want to render the chart in.   
         .datum(myData)         //Populate the <svg> element with chart data...
+        .transition().duration(500)
         .call(chart);          //Finally, render the chart!
 
     //Update the chart when window resizes.
