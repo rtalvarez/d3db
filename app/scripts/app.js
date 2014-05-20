@@ -63,7 +63,7 @@ angular.module('d3dbApp', ['firebase'])
       var chart = result;
       window.chart = chart;
       ref.on('child_added', function(snapshot){
-        console.log('child added!');
+        console.log('Child added!');
         var read = snapshot.val().split('@');
         helper.updateChart(chart._data, read, chart);
         exports.data = chart._data;
@@ -81,9 +81,20 @@ angular.module('d3dbApp', ['firebase'])
 
 }])
 
-.controller('statsCtrl', ['$scope', 'fbGraphFactory', function($scope, fbGraphFactory){
+.controller('inputCtrl', ['$scope', '$http', function($scope, $http){
 
-  console.log(fbGraphFactory);
+  $scope.submit = function(){
+    
+    var values = $scope.input.split(',');
+    if ($scope.input){
+
+      $http.post('/data', { gn: values[0], ts:values[1], val:values[2] })
+      .success(function(){
+        console.log('Post successfull');
+        $scope.input = '';
+      });
+    }
+  };
 
 }]);
 
