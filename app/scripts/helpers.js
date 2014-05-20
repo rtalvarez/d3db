@@ -36,16 +36,6 @@
       helper.changeColor(myData, graphNum, helper.randomColor());
     }
 
-    // myData[graphNum] = myData[graphNum] || {
-    //                                           key: 'firebase' + graphNum,
-    //                                           color: '#ff7f0e',
-    //                                           values: [],
-    //                                           area: false
-    //                                         };
-
-    // myData[graphNum].values = myData[graphNum].values || [];
-    console.log('updating graph ' + graphNum);
-    
     myData[graphNum].values.push({
       x: +xyValues[1],
       y: +xyValues[2]
@@ -56,7 +46,6 @@
     helper.parseData(data, xyValues);
     
     if (xyValues[2] > max) {
-      // console.log('getting new max')
       helper.getNewMax(data, xyValues[0]);
       chart.yDomain([0, max]);
     }

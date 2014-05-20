@@ -28,20 +28,10 @@ angular.module('d3dbApp', ['firebase'])
           .axisLabel('Your data !')
           // .tickFormat(d3.format('.02f'));
 
-      // var obj = {
-      //   key: 'firebase',
-      //   color: '#ff7f0e',
-      //   values: [],
-      //   area: false
-      // };
-
       var myData = [];
-
 
       chart._data = myData;
       window.data = chart._data;
-
-      // console.log(myData);
 
       d3.select('#chart svg')    //Select the <svg> element you want to render the chart in.   
           .datum(myData)         //Populate the <svg> element with chart data...
@@ -52,7 +42,7 @@ angular.module('d3dbApp', ['firebase'])
       nv.utils.windowResize(function() { chart.update(); });
 
       deferred.resolve(chart);
-      // return chart;
+      
     });
 
     return deferred.promise;
