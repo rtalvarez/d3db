@@ -13,7 +13,7 @@
     var graphNum = +xyValues[0] - 1;
 
     myData[graphNum] = myData[graphNum] || {
-                                              key: 'firebase',
+                                              key: 'firebase' + graphNum,
                                               color: '#ff7f0e',
                                               values: [],
                                               area: false
