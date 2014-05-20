@@ -1,5 +1,8 @@
 #chart svg {
   height: 400px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  background-color: rgb(240,240,240);
 }
 
 
@@ -7,12 +10,12 @@
   position: absolute;
   background-color: rgba(255,255,255,1.0);
   padding: 1px;
-  border: 1px solid rgba(0,0,0,.2);
-  z-index: 10000;
-
+  border: 1px solid rgb(150,150,150);
+  border-radius: 10px;
+  z-index: 100;
   font-family: Arial;
-  font-size: 10px;
-  text-align: left;
+  font-size: 12px;
+  text-align: center;
 
 }
 
@@ -44,7 +47,7 @@ svg .title {
 
 .nvd3 .nv-axis line {
   fill: none;
-  stroke: #e5e5e5;
+  stroke: rgb(150,150,150);
 }
 
 /**********

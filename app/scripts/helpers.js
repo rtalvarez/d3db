@@ -8,21 +8,21 @@
   var i = 0;
   var max = 0;
 
-  helper.parseData = function(myData, yi) {
+  helper.parseData = function(myData, yi, chartNum) {
 
     i++;
-    myData[0].values.push({
+    myData[chartNum].values.push({
       x: i,
       y: yi
     });
 []
   };
 
-  helper.updateChart = function(data, value, chart){
-    helper.parseData(data, value);
+  helper.updateChart = function(data, value, chart, chartNum){
+    helper.parseData(data, value, chartNum);
     
     if (value > max) {
-      console.log('getting new max')
+      // console.log('getting new max')
       helper.getNewMax(data);
       chart.yDomain([0, max]);
     }
@@ -45,4 +45,7 @@
   helper.hello = function(){
     alert('Hello world');
   };
+
+
+
 })();
