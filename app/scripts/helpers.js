@@ -16,9 +16,7 @@
     for (var i = 1; i <= 6; i++){
       color = color + hex[Math.floor(Math.random() * hex.length)];
     }
-
-    console.log(color);
-
+    
     return '#' + color;
   }
 
