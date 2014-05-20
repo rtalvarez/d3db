@@ -15,8 +15,9 @@ angular.module('d3dbApp', ['firebase'])
     times.push(read[0].replace('~','.'));
     values.push(read[1]);
     console.log(read[1]);
-    helper.parseData(myData, +read[1]);
-    chart.update();
+    helper.updateChart(myData, +read[1], chart);
+    // helper.parseData(myData, +read[1]);
+    // chart.update();
     // console.log(snapshot.val());
   });
 
