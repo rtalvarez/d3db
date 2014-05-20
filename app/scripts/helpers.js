@@ -18,8 +18,9 @@
                                               values: [],
                                               area: false
                                             };
-                                            
-    myData[graphNum].values = myData[graphNum].values || [];
+
+    // myData[graphNum].values = myData[graphNum].values || [];
+    console.log('updating graph ' + graphNum);
     
     myData[graphNum].values.push({
       x: +xyValues[1],
@@ -27,21 +28,21 @@
     });
   };
 
-  helper.updateChart = function(data, value, chart, chartNum){
-    helper.parseData(data, value, chartNum);
+  helper.updateChart = function(data, xyValues, chart){
+    helper.parseData(data, xyValues);
     
-    if (value > max) {
+    if (xyValues[2] > max) {
       // console.log('getting new max')
-      helper.getNewMax(data);
+      helper.getNewMax(data, xyValues[0]);
       chart.yDomain([0, max]);
     }
 
     chart.update();
   };
 
-  helper.getNewMax = function(data){
+  helper.getNewMax = function(data, chartNum){
 
-    var values = data[0].values;
+    var values = data[+chartNum - 1].values;
 
     for (var i = 0; i < values.length; i++){
 

@@ -73,6 +73,7 @@ angular.module('d3dbApp', ['firebase'])
       var chart = result;
       window.chart = chart;
       ref.on('child_added', function(snapshot){
+        console.log('child added!');
         var read = snapshot.val().split('@');
         helper.updateChart(chart._data, read, chart);
       });
