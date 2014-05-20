@@ -13,9 +13,10 @@
 
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-controller="MainCtrl">
+    <ng-view></ng-view>
+    
 
-      <div id="chart">
+<!--       <div id="chart">
 
       <svg></svg>
 
@@ -23,9 +24,10 @@
 
       <form  ng-submit="submit()" ng-controller='inputCtrl'>
       try it !
+      input in the form: graphNumber,x,y
       <input type='text' ng-model='input' placeholder='enter graph num, x, y ..'>
       <!-- <input type='text' ng-model='values' placeholder='type x,y value pair here ..'> -->
-      </form>
+      </form> -->
 
 <!--     <ul ng-repeat="item in data">
       <li>
@@ -40,9 +42,9 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+<!--     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script> -->
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/angularfire.js"></script>
     <script src="bower_components/d3/d3.js"></script>

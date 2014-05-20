@@ -1,6 +1,15 @@
 'use strict';
 
-angular.module('d3dbApp', ['firebase'])
+angular.module('d3dbApp', ['firebase','ngRoute'])
+
+.config(['$routeProvider', function($routeProvider){
+
+  $routeProvider.when('/', {
+    templateUrl: '/views/home.html',
+    controller: 'MainCtrl'
+  })
+
+}])
 
 .factory('graphFactory', function($q){
 

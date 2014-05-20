@@ -16,7 +16,7 @@
     for (var i = 1; i <= 6; i++){
       color = color + hex[Math.floor(Math.random() * hex.length)];
     }
-    
+
     return '#' + color;
   }
 
@@ -26,7 +26,7 @@
 
     if (!myData[graphNum]){
       myData[graphNum] = {
-                            key: 'firebase' + graphNum,
+                            key: 'firebase' + (graphNum + 1),
                             values: [],
                             area: false
                           };
