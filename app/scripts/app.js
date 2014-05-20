@@ -103,31 +103,42 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
 .factory('authFactory', ['firebaseRef', '$q', function(firebaseRef, $q){
 
   var exports = {};
-  var deferred = $q.defer();
 
   exports.login = function(){
+
+    var deferred = $q.defer();
+
     var auth = new FirebaseSimpleLogin(firebaseRef.ref, function(error, user){
       if (error){
         console.log(error)
       } else {
-        console.log(user)
+        // console.log(user)
+        // window.user = user;
+        exports.user = user;
+        deferred.resolve(user);
       }
     });
     auth.login('google', {
-      preferRedirect: true,
+      preferRedirect: false,
       scope: 'profile'
     });
     
-    deferred.resolve(auth);
-    return deferred.promise();
+    // exports.auth = auth;
+    return deferred.promise;
   };
 
   return exports;
 }])
 
-.controller('MainCtrl', ['fbGraphFactory', function(fbGraphFactory){
+.controller('MainCtrl', ['$scope', 'fbGraphFactory', 'authFactory', function($scope, fbGraphFactory, authFactory){
 
   fbGraphFactory.create();
+
+  $scope.user = authFactory.user.displayName;
+  
+  // console.log(authFactory.user);
+  
+
 
 }])
 
@@ -147,14 +158,16 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
   };
 }])
 
-.controller('LoginCtrl', ['$scope', '$route', 'authFactory', function($scope, $route, authFactory){
-
+.controller('LoginCtrl', ['$scope', '$location', 'authFactory', function($scope, $location, authFactory){
 
   $scope.login = function(){
 
     console.log('logging in..')
     authFactory.login().then(function(result){
       console.log(result);
+      if (result){
+        $location.path('/home');
+      }
     });
   };
 
