@@ -11,7 +11,9 @@
     "angular-cookies": ">=1.2.*",
     "angular-sanitize": ">=1.2.*",
     "firebase": "~1.0.15",
-    "angularfire": "~0.7.1"
+    "angularfire": "~0.7.1",
+    "d3": "~3.4.8",
+    "nvd3": "~1.1.15-beta"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
