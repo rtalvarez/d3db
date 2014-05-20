@@ -8,7 +8,6 @@ angular.module('d3dbApp', ['firebase'])
 
   exports.makeGraph = function(){
 
-    var graph;
     var deferred = $q.defer();
 
     nv.addGraph(function() {
@@ -29,15 +28,18 @@ angular.module('d3dbApp', ['firebase'])
           .axisLabel('Your data !')
           // .tickFormat(d3.format('.02f'));
 
-      var obj = {
-        key: 'firebase',
-        color: '#ff7f0e',
-        values: [],
-        area: false
-      };
+      // var obj = {
+      //   key: 'firebase',
+      //   color: '#ff7f0e',
+      //   values: [],
+      //   area: false
+      // };
 
-      var myData = [obj];
+      var myData = [];
+
+
       chart._data = myData;
+      window.data = chart._data;
 
       // console.log(myData);
 
@@ -72,8 +74,7 @@ angular.module('d3dbApp', ['firebase'])
       window.chart = chart;
       ref.on('child_added', function(snapshot){
         var read = snapshot.val().split('@');
-        console.log('New child appended: ' + read[1]);
-        helper.updateChart(chart._data, +read[1], chart, 0);
+        helper.updateChart(chart._data, read, chart);
       });
       ref = $firebase(ref);
     });
@@ -84,10 +85,9 @@ angular.module('d3dbApp', ['firebase'])
 
 .controller('MainCtrl', ['fbGraphFactory', function(fbGraphFactory){
 
-  console.log(fbGraphFactory);
   fbGraphFactory.create();
 
-}])
+}]);
 
 
 

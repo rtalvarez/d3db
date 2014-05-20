@@ -5,7 +5,6 @@
   background-color: rgb(240,240,240);
 }
 
-
 .nvtooltip {
   position: absolute;
   background-color: rgba(255,255,255,1.0);
@@ -48,6 +47,7 @@ svg .title {
 .nvd3 .nv-axis line {
   fill: none;
   stroke: rgb(150,150,150);
+  /*stroke-dasharray: "15, 15"*/
 }
 
 /**********
@@ -57,4 +57,8 @@ svg .title {
 .nvd3 .nv-groups path.nv-line {
   fill: none;
   stroke-width: 1.5px;
+}
+
+.nvd3 line.nv-guideline {
+  stroke: #ccc;
 }

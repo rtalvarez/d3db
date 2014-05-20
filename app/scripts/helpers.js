@@ -5,17 +5,26 @@
 
   window.helper = window.helper || {};
 
-  var i = 0;
+  
   var max = 0;
 
-  helper.parseData = function(myData, yi, chartNum) {
+  helper.parseData = function(myData, xyValues) {
 
-    i++;
-    myData[chartNum].values.push({
-      x: i,
-      y: yi
+    var graphNum = +xyValues[0] - 1;
+
+    myData[graphNum] = myData[graphNum] || {
+                                              key: 'firebase',
+                                              color: '#ff7f0e',
+                                              values: [],
+                                              area: false
+                                            };
+                                            
+    myData[graphNum].values = myData[graphNum].values || [];
+    
+    myData[graphNum].values.push({
+      x: +xyValues[1],
+      y: +xyValues[2]
     });
-[]
   };
 
   helper.updateChart = function(data, value, chart, chartNum){
