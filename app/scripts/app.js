@@ -4,10 +4,15 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
 
 .config(['$routeProvider', function($routeProvider){
 
-  $routeProvider.when('/', {
+  $routeProvider.when('/home/', {
     templateUrl: '/views/home.html',
     controller: 'MainCtrl'
-  })
+  }).when('/login/', {
+    templateUrl: '/views/login.html',
+    controller: 'LoginCtrl'
+  }).otherwise({
+    redirectTo: '/login/'
+  });
 
 }])
 
