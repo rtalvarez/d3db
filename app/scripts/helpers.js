@@ -8,16 +8,40 @@
   
   var max = 0;
 
+  helper.randomColor = function(){
+
+    var color = '';
+    var hex = ['A','B','C','D','E','F',0,1,2,3,4,5,6,7,8,9];
+
+    for (var i = 1; i <= 6; i++){
+      color = color + hex[Math.floor(Math.random() * hex.length)];
+    }
+
+    console.log(color);
+
+    return '#' + color;
+  }
+
   helper.parseData = function(myData, xyValues) {
 
     var graphNum = +xyValues[0] - 1;
 
-    myData[graphNum] = myData[graphNum] || {
-                                              key: 'firebase' + graphNum,
-                                              color: '#ff7f0e',
-                                              values: [],
-                                              area: false
-                                            };
+    if (!myData[graphNum]){
+      myData[graphNum] = {
+                            key: 'firebase' + graphNum,
+                            values: [],
+                            area: false
+                          };
+
+      helper.changeColor(myData, graphNum, helper.randomColor());
+    }
+
+    // myData[graphNum] = myData[graphNum] || {
+    //                                           key: 'firebase' + graphNum,
+    //                                           color: '#ff7f0e',
+    //                                           values: [],
+    //                                           area: false
+    //                                         };
 
     // myData[graphNum].values = myData[graphNum].values || [];
     console.log('updating graph ' + graphNum);
@@ -52,8 +76,8 @@
     }
   };
 
-  helper.hello = function(){
-    alert('Hello world');
+  helper.changeColor = function(data, graphNum, color){
+    data[graphNum].color = color;
   };
 
 
