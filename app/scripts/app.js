@@ -6,29 +6,13 @@ angular.module('d3dbApp', ['firebase'])
 
   var ref = new Firebase('https://incandescent-fire-8620.firebaseio.com');
 
-  var times = [1,2,3];
-  var values = [1,2,3];
-  // var i = 0;
-
   ref.on('child_added', function(snapshot){
     var read = snapshot.val().split('@');
-    times.push(read[0].replace('~','.'));
-    values.push(read[1]);
     console.log(read[1]);
     helper.updateChart(myData, +read[1], chart);
-    // helper.parseData(myData, +read[1]);
-    // chart.update();
-    // console.log(snapshot.val());
   });
 
   ref = $firebase(ref);
-
-  window.times = times;
-  window.values = values;
-
-  // $scope.data = times;
-  // ref.$bind($scope, 'text');
-
 
   /*These lines are all chart setup.  Pick and choose which chart features you want to utilize. */
   nv.addGraph(function() {
@@ -42,33 +26,19 @@ angular.module('d3dbApp', ['firebase'])
     ;
 
     chart.xAxis     //Chart x-axis settings
-        .axisLabel('Time (ms)')
-        .tickFormat(d3.format(',r'));
+        .axisLabel('Time')
+        // .tickFormat(d3.format(',r'));
 
     chart.yAxis     //Chart y-axis settings
-        .axisLabel('Voltage (v)')
-        .tickFormat(d3.format('.02f'));
-
-    /* Done setting the chart up? Time to render it!*/
-    // var myData = sinAndCos();   //You need data...
-
-
+        .axisLabel('Your data !')
+        // .tickFormat(d3.format('.02f'));
 
     var myData = [{
       key: 'Test wave',
       color: '#ff7f0e',
-      values: []
+      values: [],
+      area: false
     }];
-
-    // var arr = [];
-    // myData[0].values = arr;
-
-    // for (var i = 0; i < 100; i++){
-    //   arr.push({
-    //     x: i,
-    //     y: i
-    //   });
-    // }
 
     console.log(myData);
     window.myData = myData;
