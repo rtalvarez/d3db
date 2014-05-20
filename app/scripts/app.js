@@ -65,7 +65,17 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
   return exports;
 })
 
-.factory('fbGraphFactory', function($firebase, graphFactory){
+.factory('firebaseRef', function($firebase){
+
+  var exports = {};
+  var ref = new Firebase('https://incandescent-fire-8620.firebaseio.com');
+  exports.ref = ref;
+  ref = $firebase(ref);
+  exports.$ref = ref;
+  return exports;
+})
+
+.factory('fbGraphFactory', function($firebase, graphFactory, firebaseRef){
 
   var exports = {};
 
@@ -73,7 +83,8 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
 
     graphFactory.makeGraph().then(function(result){
 
-      var ref = new Firebase('https://incandescent-fire-8620.firebaseio.com');
+      // var ref = new Firebase('https://incandescent-fire-8620.firebaseio.com');
+      var ref = firebaseRef.ref;
       var chart = result;
       window.chart = chart;
       ref.on('child_added', function(snapshot){
@@ -82,7 +93,7 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
         helper.updateChart(chart._data, read, chart);
         exports.data = chart._data;
       });
-      ref = $firebase(ref);
+      // ref = $firebase(ref);
     });
   };
 
@@ -109,8 +120,13 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
       });
     }
   };
+}])
 
-}]);
+.controller('LoginCtrl', [function(){
+
+
+}])
+
 
 
 
