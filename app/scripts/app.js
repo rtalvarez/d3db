@@ -71,7 +71,7 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
   var ref = new Firebase('https://incandescent-fire-8620.firebaseio.com');
   exports.ref = ref;
   ref = $firebase(ref);
-  exports.$ref = ref;
+  // exports.$ref = ref;
   return exports;
 })
 
@@ -100,6 +100,31 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
   return exports;
 })
 
+.factory('authFactory', ['firebaseRef', '$q', function(firebaseRef, $q){
+
+  var exports = {};
+  var deferred = $q.defer();
+
+  exports.login = function(){
+    var auth = new FirebaseSimpleLogin(firebaseRef.ref, function(error, user){
+      if (error){
+        console.log(error)
+      } else {
+        console.log(user)
+      }
+    });
+    auth.login('google', {
+      preferRedirect: true,
+      scope: 'profile'
+    });
+    
+    deferred.resolve(auth);
+    return deferred.promise();
+  };
+
+  return exports;
+}])
+
 .controller('MainCtrl', ['fbGraphFactory', function(fbGraphFactory){
 
   fbGraphFactory.create();
@@ -122,10 +147,18 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
   };
 }])
 
-.controller('LoginCtrl', [function(){
+.controller('LoginCtrl', ['$scope', '$route', 'authFactory', function($scope, $route, authFactory){
 
 
-}])
+  $scope.login = function(){
+
+    console.log('logging in..')
+    authFactory.login().then(function(result){
+      console.log(result);
+    });
+  };
+
+}]);
 
 
 
