@@ -16,6 +16,7 @@ exitWithMessageOnError () {
   fi
 }
 
+echo " #### Starting up !! #### "
 # Prerequisites
 # -------------
 
@@ -99,6 +100,7 @@ selectNodeVersion () {
 # ----------
 
 echo Handling node.js deployment.
+echo "Target directory: $DEPLOYMENT_TARGET"
 
 # 1. KuduSync
 if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
@@ -125,6 +127,8 @@ if [ -e "$DEPLOYMENT_TARGET/bower.json" ]; then
   ./node_modules/.bin/bower install
   exitWithMessageOnError "bower failed"
   cd - > /dev/null
+else
+  echo "Something is wrong with bower.."
 fi
 
 # 5. Run grunt
@@ -135,6 +139,8 @@ if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   ./node_modules/.bin/grunt --no-color build
   exitWithMessageOnError "grunt failed"
   cd - > /dev/null
+else
+  echo "Something is wrong with grunt"
 fi
 ##################################################################################################################################
 

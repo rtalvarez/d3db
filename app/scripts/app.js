@@ -110,7 +110,7 @@ angular.module('d3dbApp', ['firebase','ngRoute'])
 
     var auth = new FirebaseSimpleLogin(firebaseRef.ref, function(error, user){
       if (error){
-        console.log(error)
+        console.log(error);
       } else {
         // console.log(user)
         // window.user = user;
